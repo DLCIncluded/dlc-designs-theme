@@ -1,20 +1,20 @@
-=== _s ===
+=== DLC Designs ===
 
-Contributors: automattic
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Contributors: dlcincluded
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, e-commerce
 
-Requires at least: 4.5
-Tested up to: 5.4
-Requires PHP: 5.6
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-A starter theme called _s, or underscores.
+A dark, terminal-inspired WooCommerce theme for the DLC Designs shop.
 
 == Description ==
 
-Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+DLC Designs is a custom WooCommerce storefront theme: near-black backgrounds, bright green and cyan accents, monospace type for headings and accents, and a typewriter-style animated hero on the homepage.
 
 == Installation ==
 
@@ -26,12 +26,12 @@ Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme mean
 
 = Does this theme support any plugins? =
 
-_s includes support for WooCommerce and for Infinite Scroll in Jetpack.
+DLC Designs includes support for WooCommerce and for Infinite Scroll in Jetpack.
 
 == Changelog ==
 
-= 1.0 - May 12 2015 =
-* Initial release
+= 1.0.0 =
+* Initial release, forked from Underscores (_s).
 
 == Credits ==
 

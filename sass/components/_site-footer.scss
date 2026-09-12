@@ -1,0 +1,13 @@
+.site-footer {
+	padding: 2em 5%;
+	background: $color__background-body;
+	border-top: 1px solid $color__background-hr;
+	text-align: center;
+
+	.site-info {
+		font-family: $font__mono;
+		font-size: 0.8rem;
+		letter-spacing: 0.02em;
+		color: $color__text-muted;
+	}
+}

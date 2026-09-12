@@ -1,0 +1,132 @@
+.hero {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 3em;
+	padding: 5em 5%;
+	min-height: 70vh;
+	background: $color__background-body;
+}
+
+.hero--with-image {
+	justify-content: space-between;
+}
+
+.hero__media {
+	flex: 1 1 380px;
+	max-width: 480px;
+	display: flex;
+	justify-content: center;
+
+	img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+}
+
+.hero__content {
+	flex: 1 1 480px;
+	max-width: 640px;
+}
+
+.hero--with-image .hero__content {
+	text-align: left;
+}
+
+.hero:not(.hero--with-image) .hero__content {
+	max-width: 720px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.hero__eyebrow {
+	display: inline-block;
+	margin: 0 0 1em;
+	font-family: $font__mono;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: $color__text-main;
+	border-bottom: 1px solid $color__accent-green;
+	padding-bottom: 0.6em;
+}
+
+.hero__heading {
+	margin: 0 0 0.4em;
+	font-size: clamp(2.25rem, 5vw, 3.5rem);
+	line-height: 1.1;
+	color: $color__accent-green;
+	text-shadow: 0 0 22px $color__glow-green;
+}
+
+.hero__typewriter {
+	display: block;
+	min-height: 1.6em;
+	margin: 0 0 1.25em;
+	font-family: $font__mono;
+	font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+	color: $color__accent-cyan;
+
+	.hero__typewriter-prefix {
+		color: $color__text-main;
+	}
+
+	.hero__cursor {
+		display: inline-block;
+		margin-left: 0.1em;
+		color: $color__accent-cyan;
+		animation: hero-cursor-blink 1s step-end infinite;
+	}
+}
+
+.hero__intro {
+	margin: 0 0 2em;
+	max-width: 46em;
+	color: $color__text-main;
+	font-size: 1.05rem;
+}
+
+.hero:not(.hero--with-image) .hero__intro {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hero__cta .button,
+.hero__cta a.button {
+	display: inline-block;
+	text-decoration: none;
+}
+
+@keyframes hero-cursor-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.hero__cursor {
+		animation: none;
+	}
+}
+
+@media screen and (max-width: 37.5em) {
+
+	.hero {
+		padding: 3.5em 6%;
+		text-align: center;
+	}
+
+	.hero--with-image .hero__content {
+		text-align: center;
+	}
+}

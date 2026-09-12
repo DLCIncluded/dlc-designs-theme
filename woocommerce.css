@@ -93,7 +93,7 @@ ul.products li.product .button {
 @media screen and (min-width: 48em) {
 
 	ul.products li.product {
-		width: 30.79667%;
+		width: 30.7966666667%;
 		float: left;
 		margin-right: 3.8%;
 	}
@@ -116,7 +116,7 @@ ul.products li.product .button {
 	}
 
 	ul.products.columns-3 li.product {
-		width: 30.79667%;
+		width: 30.7966666667%;
 	}
 
 	ul.products.columns-4 li.product {
@@ -128,7 +128,7 @@ ul.products li.product .button {
 	}
 
 	ul.products.columns-6 li.product {
-		width: 13.49333%;
+		width: 13.4933333333%;
 	}
 }
 
@@ -192,7 +192,7 @@ ul.products li.product .button {
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-3 .flex-control-thumbs li {
-	width: 30.79667%;
+	width: 30.7966666667%;
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-3 .flex-control-thumbs li:nth-child(3n) {
@@ -300,7 +300,7 @@ ul.products li.product .button {
 }
 
 .star-rating::before {
-	content: "\53\53\53\53\53";
+	content: "SSSSS";
 	opacity: 0.25;
 	float: left;
 	top: 0;
@@ -318,11 +318,11 @@ ul.products li.product .button {
 }
 
 .star-rating span::before {
-	content: "\53\53\53\53\53";
+	content: "SSSSS";
 	top: 0;
 	position: absolute;
 	left: 0;
-	color: #4169e1;
+	color: #39ff6a;
 }
 
 p.stars a {
@@ -345,39 +345,39 @@ p.stars a::before {
 	height: 1em;
 	line-height: 1;
 	font-family: star;
-	content: "\53";
-	color: #404040;
+	content: "S";
+	color: #cfd8d3;
 	text-indent: 0;
 	opacity: 0.25;
 }
 
 p.stars a:hover ~ a::before {
-	content: "\53";
-	color: #404040;
+	content: "S";
+	color: #cfd8d3;
 	opacity: 0.25;
 }
 
 p.stars:hover a::before {
-	content: "\53";
-	color: #4169e1;
+	content: "S";
+	color: #39ff6a;
 	opacity: 1;
 }
 
 p.stars.selected a.active::before {
-	content: "\53";
-	color: #4169e1;
+	content: "S";
+	color: #39ff6a;
 	opacity: 1;
 }
 
 p.stars.selected a.active ~ a::before {
-	content: "\53";
-	color: #404040;
+	content: "S";
+	color: #cfd8d3;
 	opacity: 0.25;
 }
 
 p.stars.selected a:not(.active)::before {
-	content: "\53";
-	color: #4169e1;
+	content: "S";
+	color: #39ff6a;
 	opacity: 1;
 }
 
@@ -480,8 +480,8 @@ p.no-comments {
 @media screen and (min-width: 48em) {
 
 	/**
-	 * Header cart
-	 */
+   * Header cart
+   */
 	.site-header-cart .widget_shopping_cart {
 		position: absolute;
 		top: 100%;
@@ -531,7 +531,7 @@ p.no-comments {
 	height: 1em;
 	cursor: ew-resize;
 	outline: none;
-	background: #4169e1;
+	background: #39ff6a;
 	box-sizing: border-box;
 	margin-top: -0.25em;
 	opacity: 1;
@@ -551,7 +551,7 @@ p.no-comments {
 	z-index: 1;
 	display: block;
 	border: 0;
-	background: #4169e1;
+	background: #39ff6a;
 }
 
 .widget_price_filter .price_slider_wrapper .ui-widget-content {

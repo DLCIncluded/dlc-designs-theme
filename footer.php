@@ -6,24 +6,23 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package _s
+ * @package Dlc_Designs
  */
 
 ?>
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', '_s' ) ); ?>">
+			<span class="site-info__copyright">
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', '_s' ), 'WordPress' );
+				printf(
+					/* translators: 1: Current year, 2: Site name. */
+					esc_html__( '© %1$s %2$s', 'dlc-designs' ),
+					esc_html( gmdate( 'Y' ) ),
+					esc_html( get_bloginfo( 'name' ) )
+				);
 				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="https://automattic.com/">Automattic</a>' );
-				?>
+			</span>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

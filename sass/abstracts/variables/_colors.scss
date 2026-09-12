@@ -1,20 +1,31 @@
-$color__background-body: #fff;
-$color__background-screen: #f1f1f1;
-$color__background-hr: #ccc;
-$color__background-button: #e6e6e6;
-$color__background-pre: #eee;
-$color__background-ins: #fff9c0;
+// DLC Designs — "hacker terminal" palette.
+// Near-black background, bright green primary accent, cyan secondary accent.
 
-$color__text-screen: #21759b;
-$color__text-input: #666;
-$color__text-input-focus: #111;
-$color__link: #4169e1; //royalblue
-$color__link-visited: #800080; //purple
-$color__link-hover: #191970; //midnightblue
-$color__text-main: #404040;
+$color__background-body: #0a0e0c;
+$color__background-screen: #101512;
+$color__background-hr: #26302b;
+$color__background-button: #10201a;
+$color__background-pre: #101512;
+$color__background-ins: rgba(57, 255, 106, 0.15);
 
-$color__border-button: #ccc #ccc #bbb;
-$color__border-button-hover: #ccc #bbb #aaa;
-$color__border-button-focus: #aaa #bbb #bbb;
-$color__border-input: #ccc;
-$color__border-abbr: #666;
+$color__text-screen: #39ff6a;
+$color__text-input: #e6ece8;
+$color__text-input-focus: #fff;
+$color__link: #39ff6a; //terminal green
+$color__link-visited: #2fd65c; //dimmer green
+$color__link-hover: #2fe3ff; //cyan
+$color__text-main: #cfd8d3;
+
+$color__border-button: #39ff6a #2fd65c #279e46;
+$color__border-button-hover: #6effa0 #39ff6a #2fd65c;
+$color__border-button-focus: #2fe3ff #2fe3ff #1fa8c2;
+$color__border-input: #26302b;
+$color__border-abbr: #8a968f;
+
+// Terminal accent tokens, used directly by header/footer/hero/buttons.
+$color__accent-green: #39ff6a;
+$color__accent-green-dim: #1f9e46;
+$color__accent-cyan: #2fe3ff;
+$color__text-muted: #8a968f;
+$color__glow-green: rgba(57, 255, 106, 0.45);
+$color__glow-cyan: rgba(47, 227, 255, 0.4);

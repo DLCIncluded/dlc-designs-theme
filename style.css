@@ -1,21 +1,19 @@
 /*!
-Theme Name: _s
-Theme URI: https://underscores.me/
-Author: Automattic
-Author URI: https://automattic.com/
-Description: Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+Theme Name: DLC Designs
+Author: DLC Designs
+Description: A dark, terminal-inspired WooCommerce theme for the DLC Designs shop, with bright green and cyan accents, monospace type, and a typewriter homepage hero.
 Version: 1.0.0
-Tested up to: 5.4
-Requires PHP: 5.6
+Tested up to: 6.6
+Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: LICENSE
-Text Domain: _s
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Text Domain: dlc-designs
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, e-commerce
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
 
-_s is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Built on Underscores (_s) https://underscores.me/, (C) 2012-2020 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -402,10 +400,10 @@ input,
 select,
 optgroup,
 textarea {
-	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	color: #cfd8d3;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
-	line-height: 1.5;
+	line-height: 1.6;
 }
 
 h1,
@@ -415,6 +413,14 @@ h4,
 h5,
 h6 {
 	clear: both;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: #fff;
+}
+
+h1 {
+	text-shadow: 0 0 18px rgba(57, 255, 106, 0.45);
 }
 
 p {
@@ -437,8 +443,8 @@ address {
 }
 
 pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", courier, monospace;
+	background: #101512;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	max-width: 100%;
@@ -450,18 +456,18 @@ code,
 kbd,
 tt,
 var {
-	font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 
 abbr,
 acronym {
-	border-bottom: 1px dotted #666;
+	border-bottom: 1px dotted #8a968f;
 	cursor: help;
 }
 
 mark,
 ins {
-	background: #fff9c0;
+	background: rgba(57, 255, 106, 0.15);
 	text-decoration: none;
 }
 
@@ -472,11 +478,11 @@ big {
 /* Elements
 --------------------------------------------- */
 body {
-	background: #fff;
+	background: #0a0e0c;
 }
 
 hr {
-	background-color: #ccc;
+	background-color: #26302b;
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
@@ -533,17 +539,17 @@ table {
 /* Links
 --------------------------------------------- */
 a {
-	color: #4169e1;
+	color: #39ff6a;
 }
 
 a:visited {
-	color: #800080;
+	color: #2fd65c;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #191970;
+	color: #2fe3ff;
 }
 
 a:focus {
@@ -561,31 +567,38 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
-	border-radius: 3px;
-	background: #e6e6e6;
-	color: rgba(0, 0, 0, 0.8);
+	border: none;
+	border-radius: 999px;
+	background: #39ff6a;
+	color: #06120a;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-weight: 600;
+	letter-spacing: 0.02em;
 	line-height: 1;
-	padding: 0.6em 1em 0.4em;
+	padding: 0.85em 1.75em;
+	cursor: pointer;
+	transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 
 button:hover,
+button:focus,
 input[type="button"]:hover,
+input[type="button"]:focus,
 input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
+input[type="reset"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+	background: #6effa0;
+	box-shadow: 0 0 20px rgba(57, 255, 106, 0.45);
+	transform: translateY(-1px);
 }
 
 button:active,
-button:focus,
 input[type="button"]:active,
-input[type="button"]:focus,
 input[type="reset"]:active,
-input[type="reset"]:focus,
-input[type="submit"]:active,
-input[type="submit"]:focus {
-	border-color: #aaa #bbb #bbb;
+input[type="submit"]:active {
+	background: #1f9e46;
+	transform: translateY(0);
 }
 
 input[type="text"],
@@ -604,8 +617,8 @@ input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
 textarea {
-	color: #666;
-	border: 1px solid #ccc;
+	color: #e6ece8;
+	border: 1px solid #26302b;
 	border-radius: 3px;
 	padding: 3px;
 }
@@ -626,11 +639,11 @@ input[type="datetime"]:focus,
 input[type="datetime-local"]:focus,
 input[type="color"]:focus,
 textarea:focus {
-	color: #111;
+	color: #fff;
 }
 
 select {
-	border: 1px solid #ccc;
+	border: 1px solid #26302b;
 }
 
 textarea {
@@ -644,6 +657,238 @@ textarea {
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
+
+/* Site header / footer
+--------------------------------------------- */
+.site-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em 2em;
+	padding: 1.25em 5%;
+	background: #0a0e0c;
+	border-bottom: 1px solid #26302b;
+}
+
+.site-branding .site-title {
+	margin: 0;
+	font-size: 1.375rem;
+}
+
+.site-branding .site-title a {
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	color: #39ff6a;
+	text-decoration: none;
+	text-shadow: 0 0 12px rgba(57, 255, 106, 0.45);
+}
+
+.site-branding .site-title a:hover,
+.site-branding .site-title a:focus {
+	color: #2fe3ff;
+	text-shadow: 0 0 12px rgba(47, 227, 255, 0.4);
+}
+
+.site-branding .site-description {
+	margin: 0.25em 0 0;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.8rem;
+	color: #8a968f;
+}
+
+.site-branding .custom-logo-link {
+	display: inline-block;
+}
+
+.site-branding .custom-logo-link img {
+	display: block;
+	max-height: 48px;
+	width: auto;
+}
+
+.main-navigation {
+	width: auto;
+	flex: 1 1 auto;
+}
+
+.main-navigation ul {
+	gap: 1.75em;
+	justify-content: flex-end;
+}
+
+.main-navigation a {
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.85rem;
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #cfd8d3;
+	padding: 0.4em 0;
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus {
+	color: #39ff6a;
+	text-shadow: 0 0 10px rgba(57, 255, 106, 0.45);
+}
+
+.main-navigation .current_page_item > a,
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_ancestor > a,
+.main-navigation .current-menu-ancestor > a {
+	color: #39ff6a;
+}
+
+.site-footer {
+	padding: 2em 5%;
+	background: #0a0e0c;
+	border-top: 1px solid #26302b;
+	text-align: center;
+}
+
+.site-footer .site-info {
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.8rem;
+	letter-spacing: 0.02em;
+	color: #8a968f;
+}
+
+/* Hero
+--------------------------------------------- */
+.hero {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 3em;
+	padding: 5em 5%;
+	min-height: 70vh;
+	background: #0a0e0c;
+}
+
+.hero--with-image {
+	justify-content: space-between;
+}
+
+.hero__media {
+	flex: 1 1 380px;
+	max-width: 480px;
+	display: flex;
+	justify-content: center;
+}
+
+.hero__media img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.hero__content {
+	flex: 1 1 480px;
+	max-width: 640px;
+}
+
+.hero--with-image .hero__content {
+	text-align: left;
+}
+
+.hero:not(.hero--with-image) .hero__content {
+	max-width: 720px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.hero__eyebrow {
+	display: inline-block;
+	margin: 0 0 1em;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: #cfd8d3;
+	border-bottom: 1px solid #39ff6a;
+	padding-bottom: 0.6em;
+}
+
+.hero__heading {
+	margin: 0 0 0.4em;
+	font-size: clamp(2.25rem, 5vw, 3.5rem);
+	line-height: 1.1;
+	color: #39ff6a;
+	text-shadow: 0 0 22px rgba(57, 255, 106, 0.45);
+}
+
+.hero__typewriter {
+	display: block;
+	min-height: 1.6em;
+	margin: 0 0 1.25em;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+	color: #2fe3ff;
+}
+
+.hero__typewriter .hero__typewriter-prefix {
+	color: #cfd8d3;
+}
+
+.hero__typewriter .hero__cursor {
+	display: inline-block;
+	margin-left: 0.1em;
+	color: #2fe3ff;
+	animation: hero-cursor-blink 1s step-end infinite;
+}
+
+.hero__intro {
+	margin: 0 0 2em;
+	max-width: 46em;
+	color: #cfd8d3;
+	font-size: 1.05rem;
+}
+
+.hero:not(.hero--with-image) .hero__intro {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hero__cta .button,
+.hero__cta a.button {
+	display: inline-block;
+	text-decoration: none;
+}
+
+@keyframes hero-cursor-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.hero__cursor {
+		animation: none;
+	}
+}
+
+@media screen and (max-width: 37.5em) {
+
+	.hero {
+		padding: 3.5em 6%;
+		text-align: center;
+	}
+
+	.hero--with-image .hero__content {
+		text-align: center;
+	}
+}
 
 /* Navigation
 --------------------------------------------- */
@@ -715,10 +960,8 @@ textarea {
 }
 
 .site-main .comment-navigation,
-.site-main
-.posts-navigation,
-.site-main
-.post-navigation {
+.site-main .posts-navigation,
+.site-main .post-navigation {
 	margin: 0 0 1.5em;
 }
 
@@ -914,12 +1157,12 @@ textarea {
 }
 
 .screen-reader-text:focus {
-	background-color: #f1f1f1;
+	background-color: #101512;
 	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
 	clip: auto !important;
 	clip-path: none;
-	color: #21759b;
+	color: #39ff6a;
 	display: block;
 	font-size: 0.875rem;
 	font-weight: 700;
