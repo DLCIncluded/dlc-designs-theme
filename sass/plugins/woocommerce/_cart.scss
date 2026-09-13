@@ -1,0 +1,425 @@
+/**
+ * Cart page.
+ */
+table.shop_table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 2em;
+	border: 1px solid $color__background-hr;
+	border-radius: 8px;
+	overflow: hidden;
+
+	th,
+	td {
+		padding: 1em;
+		border-bottom: 1px solid $color__background-hr;
+		text-align: left;
+	}
+
+	thead th {
+		font-family: $font__mono;
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: $color__text-muted;
+		background: $color__background-body;
+	}
+
+	tbody tr:last-child td {
+		border-bottom: none;
+	}
+
+	tfoot th,
+	tfoot td {
+		font-family: $font__mono;
+	}
+}
+
+table.cart,
+table.shop_table_responsive {
+
+	td.product-thumbnail {
+		width: 72px;
+
+		img {
+			width: 64px;
+			height: auto;
+			border-radius: 4px;
+			display: block;
+		}
+	}
+
+	td.product-name {
+
+		a {
+			color: #fff;
+			text-decoration: none;
+
+			&:hover {
+				color: $color__accent-green;
+			}
+		}
+
+		dl.variation {
+			margin: 0.5em 0 0;
+			font-size: 0.85rem;
+			color: $color__text-muted;
+
+			dt,
+			dd {
+				display: inline;
+				margin: 0;
+			}
+
+			dt::after {
+				content: ": ";
+			}
+
+			dd p {
+				display: inline;
+				margin: 0;
+			}
+		}
+	}
+
+	td.product-price,
+	td.product-subtotal {
+		font-family: $font__mono;
+		color: $color__accent-green;
+	}
+
+	td.product-quantity {
+
+		.quantity {
+			display: inline-block;
+		}
+	}
+
+	th.product-remove,
+	td.product-remove {
+		width: 2.5em;
+		text-align: center;
+	}
+
+	td.product-remove {
+
+		a.remove {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.75em;
+			height: 1.75em;
+			border-radius: 50%;
+			color: $woocommerce__color-error !important;
+			text-decoration: none;
+			font-size: 1.1rem;
+			line-height: 1;
+
+			&:hover {
+				background: $woocommerce__color-error;
+				color: #1a0505 !important;
+			}
+		}
+	}
+
+	td.actions {
+		background: transparent;
+
+		.coupon {
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			gap: 0.75em;
+
+			label {
+				display: none;
+			}
+
+			#coupon_code {
+				max-width: 200px;
+				min-width: 0;
+				flex: 1 1 auto;
+			}
+
+			.button {
+				flex-shrink: 0;
+				white-space: nowrap;
+			}
+		}
+
+		.button[name="update_cart"] {
+			flex-shrink: 0;
+			white-space: nowrap;
+			margin-left: auto;
+		}
+
+		@media screen and (min-width: 48em) {
+			// !important: the responsive table CSS resets td to
+			// display:table-cell at this same breakpoint with higher
+			// specificity (table.shop_table_responsive tr td), which would
+			// otherwise silently win and stack .coupon and "Update cart"
+			// as separate block rows instead of one flex row.
+			display: flex !important;
+			align-items: center;
+			// nowrap, not wrap: the coupon input is the only thing allowed
+			// to shrink (via flex-shrink above) so the row always stays on
+			// one line instead of either wrapping to a second line or
+			// squishing the buttons until their own label text wraps.
+			flex-wrap: nowrap;
+			gap: 1em;
+		}
+	}
+}
+
+/**
+ * Two-column cart layout: the cart form on the left, cart totals on the
+ * right, matching the checkout page. .woocommerce-cart-form and
+ * .cart-collaterals are direct siblings inside .woocommerce, so this is
+ * scoped via the woocommerce-cart body class to avoid touching .woocommerce
+ * wherever else it's used (single product, my account, checkout, etc).
+ */
+.woocommerce-cart .woocommerce {
+
+	@media screen and (min-width: 900px) {
+		display: grid;
+		grid-template-columns: 1fr minmax(320px, 380px);
+		gap: 0 3em;
+		align-items: start;
+
+		.woocommerce-cart-form {
+			grid-column: 1;
+		}
+
+		.cart-collaterals {
+			grid-column: 2;
+			margin-top: 0;
+		}
+	}
+}
+
+/**
+ * Cart totals + cross-sells.
+ */
+.cart-collaterals {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2.5em;
+	margin-top: 2em;
+
+	.cross-sells {
+		flex: 2 1 480px;
+		order: 1;
+	}
+
+	.cart_totals {
+		flex: 1 1 320px;
+		order: 2;
+		align-self: flex-start;
+		padding: 1.5em;
+		background: $color__background-screen;
+		border: 1px solid $color__background-hr;
+		border-radius: 8px;
+
+		> h2 {
+			margin-top: 0;
+		}
+
+		table {
+			width: 100%;
+			background: transparent;
+			border: none;
+			border-radius: 0;
+
+			th {
+				font-family: $font__mono;
+				font-size: 0.8rem;
+				color: $color__text-muted;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+
+			th,
+			td {
+				padding: 0.75em 0;
+				border-bottom: 1px solid $color__background-hr;
+			}
+
+			tr:last-child th,
+			tr:last-child td {
+				border-bottom: none;
+			}
+
+			.order-total {
+
+				th,
+				td {
+					font-size: 1.15rem;
+					color: $color__accent-green;
+				}
+			}
+		}
+
+		.wc-proceed-to-checkout {
+			margin-top: 1em;
+
+			a.checkout-button {
+				display: block;
+				width: 100%;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.woocommerce-shipping-calculator {
+	margin-top: 0.75em;
+	font-size: 0.85rem;
+
+	a {
+		color: $color__accent-cyan;
+	}
+}
+
+.shipping-calculator-form {
+	margin-top: 1em;
+
+	p {
+		margin-bottom: 0.75em;
+	}
+}
+
+/**
+ * Mobile cart: a proper item card instead of the generic
+ * shop_table_responsive label/value stack, plus a full-width totals card.
+ */
+@media screen and (max-width: 47.99em) {
+
+	.cart-collaterals .cart_totals {
+		flex-basis: 100%;
+	}
+
+	// The item cards below have their own per-item border-bottom dividers,
+	// and the actions row (update cart / coupon) is its own set of
+	// full-width stacked controls — none of that wants the outer bordered
+	// table.shop_table box wrapping the whole thing on mobile.
+	table.cart {
+		border: none;
+		border-radius: 0;
+		overflow: visible;
+	}
+
+	table.cart tbody tr.cart_item {
+		display: grid;
+		grid-template-columns: 64px 1fr 1fr 1fr;
+		grid-template-areas:
+			"thumb name name remove"
+			"thumb price qty subtotal";
+		column-gap: 0.75em;
+		row-gap: 0.6em;
+		align-items: start;
+		padding: 1.25em 0;
+		border-bottom: 1px solid $color__background-hr;
+
+		td {
+			display: block;
+			text-align: left;
+			clear: none;
+			padding: 0;
+			border-bottom: none;
+
+			&::before {
+				display: block;
+				float: none;
+				margin: 0 0 0.25em;
+				font-family: $font__mono;
+				font-size: 0.7rem;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				color: $color__text-muted;
+			}
+		}
+
+		td.product-thumbnail {
+			grid-area: thumb;
+			width: auto;
+
+			img {
+				width: 64px;
+			}
+
+			&::before {
+				display: none;
+			}
+		}
+
+		td.product-name {
+			grid-area: name;
+
+			&::before {
+				display: none;
+			}
+		}
+
+		td.product-price {
+			grid-area: price;
+		}
+
+		td.product-quantity {
+			grid-area: qty;
+
+			.quantity {
+				display: block;
+			}
+
+			.qty {
+				width: 100%;
+			}
+		}
+
+		td.product-subtotal {
+			grid-area: subtotal;
+		}
+
+		td.product-remove {
+			grid-area: remove;
+			display: flex;
+			justify-content: flex-end;
+			width: auto;
+
+			&::before {
+				display: none;
+			}
+		}
+	}
+
+	/**
+	 * Coupon + update cart: stacked, full-width, with Update Cart shown
+	 * first (visually) even though it comes after the coupon in the DOM.
+	 */
+	table.cart tbody tr td.actions {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: stretch;
+		gap: 1.75em;
+		padding: 1.5em 0 0;
+
+		.coupon {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.75em;
+
+			#coupon_code {
+				max-width: none;
+			}
+
+			.button {
+				width: 100%;
+			}
+		}
+
+		.button[name="update_cart"] {
+			width: 100%;
+			margin-left: 0;
+		}
+	}
+}

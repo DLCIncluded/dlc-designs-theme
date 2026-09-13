@@ -56,7 +56,7 @@ function dlc_designs_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function dlc_designs_customize_preview_js() {
-	wp_enqueue_script( 'dlc-designs-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), DLC_DESIGNS_VERSION, true );
+	wp_enqueue_script( 'dlc-designs-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), dlc_designs_asset_version( '/js/customizer.js' ), true );
 }
 add_action( 'customize_preview_init', 'dlc_designs_customize_preview_js' );
 
@@ -268,3 +268,40 @@ function dlc_designs_customize_register_hero( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'dlc_designs_customize_register_hero' );
+
+/**
+ * Registers the "Footer" Customizer section and its controls.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function dlc_designs_customize_register_footer( $wp_customize ) {
+	$wp_customize->add_section(
+		'dlc_designs_footer_section',
+		array(
+			'title'       => __( 'Footer', 'dlc-designs' ),
+			'description' => __( 'Assign menus to the footer columns under Appearance > Menus. Social links (Footer Social menu) show an icon that\'s picked automatically from each link\'s URL.', 'dlc-designs' ),
+			'priority'    => 130,
+		)
+	);
+
+	// Optional footer logo.
+	$wp_customize->add_setting(
+		'dlc_designs_footer_logo',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'dlc_designs_footer_logo',
+			array(
+				'label'       => __( 'Footer logo', 'dlc-designs' ),
+				'description' => __( 'Optional and separate from the header logo. Falls back to the site name as text if left empty.', 'dlc-designs' ),
+				'section'     => 'dlc_designs_footer_section',
+			)
+		)
+	);
+}
+add_action( 'customize_register', 'dlc_designs_customize_register_footer' );

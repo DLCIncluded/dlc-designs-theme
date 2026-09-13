@@ -2,17 +2,44 @@
 
 	div.product {
 		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2.5em;
+		margin-bottom: 3em;
+
+		// WooCommerce fires woocommerce_after_single_product_summary (tabs,
+		// upsells, related products) INSIDE this same div.product, before
+		// its closing tag — not as a separate sibling. Without an explicit
+		// full-width basis they'd size to their own content as flex items
+		// instead of stretching, growing/shrinking with whichever tab or
+		// section is showing.
+		> .woocommerce-tabs,
+		> .related.products,
+		> .upsells.products {
+			flex: 1 1 100%;
+			max-width: 100%;
+		}
 
 		.woocommerce-product-gallery {
 			position: relative;
-			float: left;
+			flex: 1 1 380px;
+			max-width: 100%;
+
+			@media screen and (min-width: 48em) {
+				max-width: calc(50% - 1.25em);
+			}
 
 			.woocommerce-product-gallery__trigger {
 				position: absolute;
-				top: 2em;
+				top: 1em;
 				right: 1em;
 				display: block;
 				z-index: 99;
+				color: #fff;
+			}
+
+			img {
+				border-radius: 6px;
 			}
 
 			.flex-viewport {
@@ -22,17 +49,23 @@
 			.flex-control-thumbs {
 				margin: 0;
 				padding: 0;
+				display: flex;
+				gap: 0.75em;
+				flex-wrap: wrap;
 
 				li {
 					list-style: none;
 					cursor: pointer;
-					float: left;
+					width: 72px;
 
 					img {
+						border-radius: 4px;
+						border: 2px solid transparent;
 						opacity: 0.5;
 
 						&.flex-active {
 							opacity: 1;
+							border-color: $color__accent-green;
 						}
 					}
 
@@ -44,29 +77,146 @@
 					}
 				}
 			}
+		}
 
-			@for $i from 2 through 5 {
+		.summary {
+			flex: 1 1 380px;
 
-				&.woocommerce-product-gallery--columns-#{$i} {
+			.product_title {
+				margin-bottom: 0.35em;
+			}
 
-					.flex-control-thumbs {
+			.price {
+				display: block;
+				margin-bottom: 1em;
+				font-family: $font__mono;
+				font-size: 1.4rem;
+				color: $color__accent-green;
 
-						li {
+				del {
+					margin-right: 0.6em;
+					font-size: 0.9rem;
+					color: $color__text-muted;
+					opacity: 0.7;
+				}
 
-							@include column-width($i);
+				ins {
+					text-decoration: none;
+					color: $color__accent-green;
+				}
+			}
 
-							&:nth-child(#{$i}n) {
-								margin-right: 0;
-							}
+			.woocommerce-product-details__short-description {
+				margin-bottom: 1.5em;
+				color: $color__text-main;
+			}
 
-							&:nth-child(#{$i}n+1) {
-								clear: both;
-							}
-						}
+			.stock {
+				display: block;
+				margin-bottom: 1em;
+				font-family: $font__mono;
+				font-size: 0.9rem;
+			}
+
+			form.cart {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 1em;
+				margin-bottom: 1.5em;
+
+				.quantity {
+					margin: 0;
+				}
+
+				table.variations {
+					flex: 1 1 100%;
+					margin-bottom: 0;
+
+					td,
+					th {
+						padding: 0.5em 0;
+						vertical-align: middle;
+					}
+
+					select {
+						min-width: 180px;
+					}
+				}
+
+				.reset_variations {
+					display: inline-block;
+					margin-left: 0.75em;
+					font-family: $font__mono;
+					font-size: 0.8rem;
+					color: $color__text-muted;
+				}
+
+				// For variable products, WooCommerce nests the quantity
+				// input and add-to-cart button two levels deeper than for
+				// simple products (form.cart > .single_variation_wrap >
+				// .woocommerce-variation-add-to-cart, rather than as direct
+				// children of form.cart), so the flex row above never
+				// reaches them — they need the same treatment applied here.
+				.single_variation_wrap {
+					flex: 1 1 100%;
+				}
+			}
+
+			.woocommerce-variation-price {
+				margin-bottom: 1em;
+
+				.price {
+					margin-bottom: 0;
+				}
+			}
+
+			.woocommerce-variation-add-to-cart {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 1em;
+
+				.quantity {
+					margin: 0;
+				}
+			}
+
+			.woocommerce-variation-availability {
+				margin-bottom: 1em;
+				font-family: $font__mono;
+				font-size: 0.9rem;
+			}
+
+			.product_meta {
+				padding-top: 1.25em;
+				border-top: 1px solid $color__background-hr;
+				font-family: $font__mono;
+				font-size: 0.8rem;
+				color: $color__text-muted;
+
+				> span {
+					display: block;
+					margin-bottom: 0.4em;
+				}
+
+				a {
+					color: $color__text-muted;
+
+					&:hover {
+						color: $color__accent-green;
 					}
 				}
 			}
 		}
+	}
+}
+
+.quantity {
+
+	.qty {
+		width: 4.5em;
+		text-align: center;
 	}
 }
 
@@ -82,5 +232,19 @@
 
 	&.out-of-stock {
 		color: $woocommerce__color-error;
+	}
+}
+
+/**
+ * Related / upsell products.
+ */
+.related.products,
+.upsells.products {
+	margin-top: 3em;
+	padding-top: 2em;
+	border-top: 1px solid $color__background-hr;
+
+	> h2 {
+		margin-bottom: 1em;
 	}
 }

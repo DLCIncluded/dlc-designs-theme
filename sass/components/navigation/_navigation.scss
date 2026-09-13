@@ -49,6 +49,38 @@
 		}
 	}
 
+	// Animates the top-level mobile menu open/close (the nested submenu
+	// display logic above, for hover/focus dropdowns, is untouched).
+	// Positioned absolute so it drops down as an overlay panel below the
+	// toggle button rather than sitting beside it in the header's flex row
+	// or pushing page content down while collapsed.
+	position: relative;
+
+	// wp_nav_menu() wraps its output in a container <div> by default (both
+	// for a real assigned menu and for the wp_page_menu() fallback), so the
+	// top-level <ul> is a grandchild here, not a direct child.
+	> div > ul {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		display: block;
+		max-height: 0;
+		overflow: hidden;
+		opacity: 0;
+		padding: 0 5%;
+		background: $color__background-body;
+		border-bottom: 1px solid $color__background-hr;
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+		transition: max-height 0.3s ease, opacity 0.25s ease;
+	}
+
+	&.toggled > div > ul {
+		max-height: 37.5em;
+		opacity: 1;
+	}
+
 	li {
 		position: relative;
 
@@ -70,8 +102,7 @@
 }
 
 /* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
+.menu-toggle {
 	display: block;
 }
 
@@ -81,8 +112,16 @@
 		display: none;
 	}
 
-	.main-navigation ul {
+	.main-navigation > div > ul {
+		position: static;
 		display: flex;
+		max-height: none;
+		overflow: visible;
+		opacity: 1;
+		padding: 0;
+		background: transparent;
+		border-bottom: none;
+		box-shadow: none;
 	}
 }
 

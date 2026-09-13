@@ -1,7 +1,9 @@
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"] {
+input[type="submit"],
+.button {
+	display: inline-block;
 	border: none;
 	border-radius: 999px;
 	background: $color__accent-green;
@@ -12,11 +14,21 @@ input[type="submit"] {
 	line-height: 1;
 	padding: 0.85em 1.75em;
 	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
 	transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+
+	// Anchor-based buttons (WooCommerce uses <a class="button"> a lot) would
+	// otherwise pick up the muted a:visited color, which has higher
+	// specificity than a bare .button and washes out the button text.
+	&:visited {
+		color: #06120a;
+	}
 
 	&:hover,
 	&:focus {
 		background: #6effa0;
+		color: #06120a;
 		box-shadow: 0 0 20px $color__glow-green;
 		transform: translateY(-1px);
 	}
@@ -24,5 +36,14 @@ input[type="submit"] {
 	&:active {
 		background: $color__accent-green-dim;
 		transform: translateY(0);
+	}
+
+	&:disabled,
+	&[disabled] {
+		background: $color__background-hr;
+		color: $color__text-muted;
+		cursor: not-allowed;
+		box-shadow: none;
+		transform: none;
 	}
 }

@@ -13,6 +13,8 @@
 
 		.button {
 			float: left;
+			font-size: 0.85rem;
+			padding: 0.6em 1.25em;
 		}
 	}
 
@@ -28,7 +30,8 @@
 		height: 1em;
 		cursor: ew-resize;
 		outline: none;
-		background: $color__link;
+		background: $color__accent-green;
+		border-radius: 50%;
 		box-sizing: border-box;
 		margin-top: -0.25em;
 		opacity: 1;
@@ -39,7 +42,7 @@
 
 		&:hover,
 		&.ui-state-active {
-			box-shadow: 0 0 0 0.25em rgba(#000, 0.1);
+			box-shadow: 0 0 0 0.35em $color__glow-green;
 		}
 	}
 
@@ -48,11 +51,12 @@
 		z-index: 1;
 		display: block;
 		border: 0;
-		background: $color__link;
+		background: $color__accent-green;
 	}
 
 	.price_slider_wrapper .ui-widget-content {
-		background: rgba(0, 0, 0, 0.1);
+		background: $color__background-hr;
+		border-radius: 4px;
 	}
 
 	.ui-slider-horizontal {
@@ -61,5 +65,91 @@
 
 	.ui-slider-horizontal .ui-slider-range {
 		height: 100%;
+	}
+}
+
+/**
+ * WooCommerce widget lists shared across sidebars:
+ * layered nav (attribute filters), product categories, rating filter,
+ * and product list widgets (recently viewed, related, mini-cart, etc).
+ */
+.widget_layered_nav ul,
+.widget_layered_nav_filters ul,
+.widget_product_categories ul,
+.widget_rating_filter ul,
+.widget_shopping_cart_content ul.product_list_widget,
+ul.product_list_widget {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		padding: 0.6em 0;
+		border-bottom: 1px solid $color__background-hr;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.widget_layered_nav_filters ul li a {
+	color: $color__text-muted;
+
+	&::before {
+		content: "\2715";
+		display: inline-block;
+		margin-right: 0.4em;
+		color: $woocommerce__color-error;
+	}
+}
+
+ul.product_list_widget {
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 0.85em;
+
+		img {
+			flex: 0 0 48px;
+			width: 48px;
+			height: auto;
+		}
+
+		a {
+			display: block;
+			font-family: $font__mono;
+			font-size: 0.9rem;
+			color: $color__text-main;
+
+			&:hover {
+				color: $color__accent-green;
+			}
+		}
+
+		.woocommerce-Price-amount {
+			display: block;
+			font-size: 0.85rem;
+			color: $color__accent-green;
+		}
+
+		del .woocommerce-Price-amount {
+			color: $color__text-muted;
+		}
+	}
+}
+
+.widget_rating_filter ul li a {
+	color: $color__text-muted;
+
+	.star-rating {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 0.4em;
 	}
 }

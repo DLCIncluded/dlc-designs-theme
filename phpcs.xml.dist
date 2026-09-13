@@ -38,6 +38,12 @@
 	<exclude-pattern>/vendor/*</exclude-pattern>
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
+	<!-- WooCommerce template overrides are near-verbatim copies of the
+		 plugin's own templates: they legitimately call WC's own hooks and
+		 use WC's own 'woocommerce' text domain, which the theme-authorship
+		 sniffs below would otherwise flag as errors. -->
+	<exclude-pattern>/woocommerce/*</exclude-pattern>
+
 
 	<!--
 	#############################################################################

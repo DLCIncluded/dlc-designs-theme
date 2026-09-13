@@ -43,7 +43,7 @@ add_action( 'after_setup_theme', 'dlc_designs_woocommerce_setup' );
  * @return void
  */
 function dlc_designs_woocommerce_scripts() {
-	wp_enqueue_style( 'dlc-designs-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), DLC_DESIGNS_VERSION );
+	wp_enqueue_style( 'dlc-designs-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), dlc_designs_asset_version( '/woocommerce.css' ) );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {

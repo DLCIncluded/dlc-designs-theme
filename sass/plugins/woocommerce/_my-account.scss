@@ -1,0 +1,259 @@
+/**
+ * My Account.
+ */
+.woocommerce-account {
+
+	.woocommerce-MyAccount-navigation {
+		margin-bottom: 2em;
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			border: 1px solid $color__background-hr;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		li {
+			border-bottom: 1px solid $color__background-hr;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			a {
+				display: block;
+				padding: 0.85em 1.25em;
+				font-family: $font__mono;
+				font-size: 0.85rem;
+				letter-spacing: 0.03em;
+				text-transform: uppercase;
+				color: $color__text-main;
+				text-decoration: none;
+				background: $color__background-screen;
+
+				&:hover {
+					color: $color__accent-green;
+				}
+			}
+
+			&.is-active a {
+				color: $color__accent-green;
+				background: $color__background-body;
+				box-shadow: inset 3px 0 0 $color__accent-green;
+			}
+		}
+	}
+
+	.woocommerce-MyAccount-content {
+
+		> p:first-child {
+			margin-top: 0;
+		}
+	}
+
+	@media screen and (min-width: 48em) {
+
+		.woocommerce-MyAccount-navigation {
+			float: left;
+			width: 220px;
+			margin-bottom: 0;
+		}
+
+		.woocommerce-MyAccount-content {
+			margin-left: calc(220px + 2.5em);
+
+			// Establish a new block formatting context so the floated nav
+			// doesn't reach into descendants here (e.g. a notice with
+			// `clear: both`, which would otherwise drop below the float).
+			overflow: hidden;
+		}
+
+		// Clearfix: contain the floated nav's height so short tab content
+		// (e.g. Downloads, Orders with no orders yet) doesn't let the nav
+		// visually spill past the bottom of the page content area.
+		.entry-content {
+			overflow: hidden;
+		}
+	}
+}
+
+/**
+ * Order status pill.
+ */
+.woocommerce-orders-table__cell-order-status,
+mark.order-status {
+	display: inline-block;
+	background: none;
+}
+
+mark.order-status {
+	padding: 0.3em 0.85em;
+	border-radius: 999px;
+	font-family: $font__mono;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	background: $color__background-hr;
+	color: $color__text-main;
+
+	&.status-completed,
+	&.status-processing {
+		background: $color__accent-green-dim;
+		color: #fff;
+	}
+
+	&.status-on-hold,
+	&.status-pending {
+		background: rgba(47, 227, 255, 0.15);
+		color: $color__accent-cyan;
+	}
+
+	&.status-cancelled,
+	&.status-failed,
+	&.status-refunded {
+		background: rgba(255, 92, 92, 0.15);
+		color: $woocommerce__color-error;
+	}
+}
+
+/**
+ * Addresses.
+ */
+.woocommerce-Addresses {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5em;
+
+	.woocommerce-Address {
+		flex: 1 1 320px;
+		padding: 1.5em;
+		background: $color__background-screen;
+		border: 1px solid $color__background-hr;
+		border-radius: 8px;
+
+		address {
+			font-style: normal;
+			color: $color__text-main;
+		}
+	}
+
+	.woocommerce-Address-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+		margin-bottom: 0.75em;
+
+		h2,
+		h3 {
+			margin: 0;
+			font-size: 1rem;
+		}
+	}
+}
+
+/**
+ * Order received / view order details.
+ */
+.woocommerce-order {
+
+	.woocommerce-order-details,
+	.woocommerce-customer-details {
+		margin-top: 2em;
+	}
+
+	.woocommerce-customer-details {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5em;
+
+		address {
+			flex: 1 1 280px;
+			padding: 1.5em;
+			background: $color__background-screen;
+			border: 1px solid $color__background-hr;
+			border-radius: 8px;
+			font-style: normal;
+		}
+	}
+}
+
+/**
+ * Login / register.
+ */
+.woocommerce-form-login,
+.woocommerce-form-register {
+	max-width: 480px;
+	padding: 1.75em;
+	background: $color__background-screen;
+	border: 1px solid $color__background-hr;
+	border-radius: 8px;
+
+	.form-row label {
+		display: block;
+		margin-bottom: 0.4em;
+		font-family: $font__mono;
+		font-size: 0.8rem;
+		color: $color__text-muted;
+	}
+
+	input.input-text {
+		width: 100%;
+	}
+
+	.woocommerce-form-login__rememberme {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.woocommerce-LostPassword {
+		margin-top: 1em;
+		font-size: 0.85rem;
+	}
+}
+
+.u-columns.woocommerce-EditAccountForm,
+.u-columns {
+
+	&.col2-set {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2em;
+
+		.u-column1,
+		.u-column2 {
+			flex: 1 1 320px;
+		}
+	}
+}
+
+.woocommerce-EditAccountForm,
+.woocommerce-address-fields {
+
+	fieldset {
+		margin-top: 1.5em;
+		padding-top: 1.5em;
+		border: none;
+		border-top: 1px solid $color__background-hr;
+
+		legend {
+			font-family: $font__mono;
+			font-size: 0.85rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: $color__text-muted;
+		}
+	}
+
+	.form-row label {
+		display: block;
+		margin-bottom: 0.4em;
+		font-family: $font__mono;
+		font-size: 0.8rem;
+		color: $color__text-muted;
+	}
+}

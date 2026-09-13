@@ -1,20 +1,223 @@
+/**
+ * Shop / archive header: breadcrumb, title, description, result count + ordering.
+ */
+.woocommerce-breadcrumb {
+	margin: 0 0 2em;
+	font-family: $font__mono;
+	font-size: 0.8rem;
+	color: $color__text-muted;
+
+	a {
+		color: $color__text-muted;
+
+		&:hover {
+			color: $color__accent-green;
+		}
+	}
+}
+
+.woocommerce-products-header__title {
+	margin-bottom: 0.5em;
+}
+
+.term-description {
+	margin-bottom: 2em;
+	color: $color__text-main;
+}
+
+.woocommerce-result-count,
+.woocommerce-ordering {
+	font-family: $font__mono;
+	font-size: 0.85rem;
+	color: $color__text-muted;
+}
+
+.woocommerce-notices-wrapper + .woocommerce-result-count,
+.woocommerce-result-count {
+	margin: 0 0 1.5em;
+}
+
+.woocommerce-ordering {
+	margin: 0 0 1.5em;
+}
+
+@media screen and (min-width: 48em) {
+
+	.woocommerce-result-count {
+		float: left;
+		margin-bottom: 2.5em;
+	}
+
+	.woocommerce-ordering {
+		float: right;
+		margin-bottom: 2.5em;
+	}
+}
+
+/**
+ * Pagination (shop / category archives).
+ */
+.woocommerce-pagination {
+	clear: both;
+	margin: 2em 0;
+
+	ul.page-numbers {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5em;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		margin: 0;
+	}
+
+	// a.page-numbers / span.page-numbers, not the bare .page-numbers class:
+	// paginate_links() gives the wrapping <ul> the exact same "page-numbers"
+	// class as each individual page link/span inside it, so an unqualified
+	// .page-numbers selector styles the outer list itself too — putting a
+	// border around the whole row, not just each pill.
+	a.page-numbers,
+	span.page-numbers {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2.5em;
+		height: 2.5em;
+		padding: 0 0.75em;
+		border: 1px solid $color__background-hr;
+		border-radius: 6px;
+		font-family: $font__mono;
+		font-size: 0.85rem;
+		color: $color__text-main;
+		text-decoration: none;
+		transition: border-color 0.2s ease, color 0.2s ease;
+
+		&:hover,
+		&:focus {
+			border-color: $color__accent-green;
+			color: $color__accent-green;
+		}
+
+		&.current {
+			background: $color__accent-green;
+			border-color: $color__accent-green;
+			color: #06120a;
+			font-weight: 600;
+		}
+
+		&.dots {
+			border-color: transparent;
+			color: $color__text-muted;
+		}
+	}
+}
+
+/**
+ * Product grid.
+ */
 ul.products {
 	margin: 0;
 	padding: 0;
+	clear: both;
+	// Contains the floated li.product columns below (so the footer doesn't
+	// overlap the grid) without clipping their hover box-shadow glow the
+	// way overflow: hidden would.
+	display: flow-root;
 
 	li.product {
 		list-style: none;
 		position: relative;
 		margin-bottom: 2em;
+		padding: 1.25em;
+		background: $color__background-screen;
+		border: 1px solid $color__background-hr;
+		border-radius: 8px;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+		a {
+			text-decoration: none;
+		}
 
 		img {
 			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: 4px;
+			margin-bottom: 1em;
+		}
+
+		.woocommerce-loop-product__title {
+			margin: 0 0 0.35em;
+			font-size: 1.05rem;
+			color: #fff;
+		}
+
+		.price {
+			display: block;
+			margin-bottom: 0.5em;
+			font-family: $font__mono;
+			color: $color__accent-green;
+
+			del {
+				margin-right: 0.5em;
+				color: $color__text-muted;
+				opacity: 0.7;
+			}
+
+			ins {
+				text-decoration: none;
+				color: $color__accent-green;
+			}
+		}
+
+		.star-rating {
+			margin-bottom: 0.5em;
 		}
 
 		.button {
 			display: block;
+			margin-top: 0.75em;
+			text-align: center;
+			font-size: 0.85rem;
+		}
+
+		&:hover {
+			border-color: $color__accent-green;
+			box-shadow: 0 0 24px $color__glow-green;
+			transform: translateY(-2px);
+		}
+
+		&.outofstock {
+			opacity: 0.55;
+
+			&:hover {
+				border-color: $color__background-hr;
+				box-shadow: none;
+				transform: none;
+			}
 		}
 	}
+}
+
+.onsale {
+	position: absolute;
+	top: 0.85em;
+	left: 0.85em;
+	z-index: 1;
+	margin: 0;
+	padding: 0.3em 0.75em;
+	background: $color__accent-cyan;
+	color: #06181c;
+	font-family: $font__mono;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	border-radius: 999px;
 }
 
 @media screen and (min-width: 48em) {

@@ -1,21 +1,227 @@
+// Scoped to the <form>, not bare .woocommerce-checkout: WooCommerce puts
+// that same class on <body> too, and a bare selector here would otherwise
+// also match body (e.g. `overflow: hidden` below would lock page scroll).
+form.woocommerce-checkout {
+
+	h3 {
+		margin-bottom: 1em;
+	}
+
+	#order_review_heading {
+		margin-top: 2.5em;
+		padding-top: 2em;
+		border-top: 1px solid $color__background-hr;
+	}
+
+	// Side-by-side layout, matching the block checkout's two-column feel:
+	// billing/shipping on the left, order summary + payment on the right.
+	//
+	// This has to be CSS Grid with explicit placement, not floats: floats
+	// can only rise up beside content that precedes them in the DOM (or
+	// beside other floats), and #order_review comes AFTER #customer_details
+	// in WooCommerce's markup, which is a normal (non-floated) block — so a
+	// float on #order_review can never rise above #customer_details' own
+	// bottom edge. Grid has no such source-order restriction.
+	//
+	// #order_review is placed in the SAME row as #customer_details (row 1),
+	// not its own row — putting it in a separate row from
+	// .woocommerce-additional-fields (which is what has to occupy row 2)
+	// would size row 2 by whichever of the two is taller, pushing
+	// #order_review down to start only after #customer_details ends.
+	@media screen and (min-width: 900px) {
+		display: grid;
+		grid-template-columns: 1fr minmax(320px, 380px);
+		gap: 0 3em;
+		align-items: start;
+
+		#customer_details {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		// Kept in the DOM for screen readers; visually replaced by a
+		// heading generated on #order_review itself (below), so the whole
+		// right column is a single grid item with no row-sharing to worry
+		// about.
+		#order_review_heading {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			white-space: nowrap;
+			border: 0;
+		}
+
+		#order_review {
+			grid-column: 2;
+			grid-row: 1;
+
+			&::before {
+				content: "Your order";
+				display: block;
+				margin-bottom: 1em;
+				font-family: $font__mono;
+				font-weight: 600;
+				font-size: 1.25rem;
+				color: #fff;
+			}
+		}
+	}
+
+	.form-row {
+		margin-bottom: 1.25em;
+
+		label {
+			display: block;
+			margin-bottom: 0.4em;
+			font-family: $font__mono;
+			font-size: 0.8rem;
+			letter-spacing: 0.02em;
+			color: $color__text-muted;
+		}
+
+		select,
+		input.input-text,
+		textarea {
+			width: 100%;
+		}
+	}
+
+	.woocommerce-additional-fields {
+		margin-top: 2em;
+	}
+}
+
 @media screen and (min-width: 768px) {
 
 	.col2-set {
-
-		.form-row-first {
-			float: left;
-			margin-right: $columns__margin;
-		}
-
-		.form-row-last {
-			float: right;
-			margin-right: 0;
-		}
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 $columns__margin;
 
 		.form-row-first,
 		.form-row-last {
+			flex: 1 1 calc(50% - #{$columns__margin} / 2);
+			margin-right: 0;
+		}
+	}
 
-			@include column-width(2);
+	// Billing (col-1) and the "Additional information" order-notes section
+	// (col-2, since this checkout doesn't use a separate shipping address)
+	// stack full-width rather than sitting side by side — a form this
+	// narrow doesn't need two columns, and it reads better top to bottom.
+	#customer_details.col2-set {
+
+		.col-1,
+		.col-2 {
+			flex: 1 1 100%;
+		}
+
+		.col-2 {
+			margin-top: 2em;
+			padding-top: 2em;
+			border-top: 1px solid $color__background-hr;
+		}
+	}
+}
+
+/**
+ * Order review table + payment.
+ */
+#order_review {
+	padding: 1.5em;
+	background: $color__background-screen;
+	border: 1px solid $color__background-hr;
+	border-radius: 8px;
+
+	table.shop_table {
+		background: transparent;
+		border: none;
+		border-radius: 0;
+
+		th,
+		td {
+			padding: 0.75em 0;
+		}
+
+		thead th {
+			background: transparent;
+			font-weight: 500;
+			letter-spacing: 0.04em;
+		}
+	}
+
+	.order-total {
+
+		th,
+		td {
+			font-size: 1.15rem;
+			color: $color__accent-green;
+		}
+	}
+}
+
+#payment {
+	margin-top: 1.5em;
+
+	ul.wc_payment_methods {
+		list-style: none;
+		margin: 0 0 1.5em;
+		padding: 0;
+
+		li.wc_payment_method {
+			padding: 0.85em 0;
+			border-bottom: 1px solid $color__background-hr;
+
+			label {
+				font-family: $font__mono;
+				font-size: 0.9rem;
+				cursor: pointer;
+			}
+
+			.payment_box {
+				margin-top: 0.85em;
+				padding: 1em;
+				background: $color__background-body;
+				border: 1px solid $color__background-hr;
+				border-radius: 6px;
+				font-size: 0.9rem;
+				color: $color__text-main;
+
+				&::before {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.place-order {
+		margin-top: 1.5em;
+		padding-top: 1.5em;
+		border-top: 1px solid $color__background-hr;
+
+		#place_order {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+
+	.woocommerce-terms-and-conditions-wrapper {
+		margin-bottom: 1.25em;
+		font-size: 0.85rem;
+		color: $color__text-muted;
+	}
+}
+
+.woocommerce-checkout-review-order-table {
+
+	.product-name {
+
+		.woocommerce-Price-amount {
+			float: right;
+			color: $color__accent-green;
 		}
 	}
 }

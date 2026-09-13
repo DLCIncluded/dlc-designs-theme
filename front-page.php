@@ -31,7 +31,7 @@ if ( $dlc_designs_hero_image ) {
 }
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main site-main--full-bleed">
 
 		<section class="<?php echo esc_attr( $dlc_designs_hero_classes ); ?>">
 

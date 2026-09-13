@@ -13,21 +13,37 @@ input[type="time"],
 input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
-textarea {
+textarea,
+select {
+	background-color: $color__background-screen;
 	color: $color__text-input;
 	border: 1px solid $color__border-input;
 	border-radius: 3px;
-	padding: 3px;
+	padding: 0.6em 0.75em;
+	font-family: $font__main;
 
 	&:focus {
 		color: $color__text-input-focus;
+		border-color: $color__accent-green;
+		outline: none;
+		box-shadow: 0 0 0 1px $color__accent-green;
 	}
 }
 
 select {
-	border: 1px solid $color__border-input;
+	padding: 0.5em 0.75em;
 }
 
 textarea {
 	width: 100%;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	accent-color: $color__accent-green;
+}
+
+::placeholder {
+	color: $color__text-muted;
+	opacity: 1;
 }

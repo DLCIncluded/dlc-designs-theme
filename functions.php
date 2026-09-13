@@ -9,7 +9,7 @@
 
 if ( ! defined( 'DLC_DESIGNS_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'DLC_DESIGNS_VERSION', '1.0.0' );
+	define( 'DLC_DESIGNS_VERSION', '1.0.1' );
 }
 
 /**
@@ -46,10 +46,13 @@ function dlc_designs_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
+	// Register nav menu locations: primary nav plus a 3-column footer.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'dlc-designs' ),
+			'menu-1'        => esc_html__( 'Primary', 'dlc-designs' ),
+			'footer-social' => esc_html__( 'Footer Social', 'dlc-designs' ),
+			'footer-menu-1' => esc_html__( 'Footer Column 2', 'dlc-designs' ),
+			'footer-menu-2' => esc_html__( 'Footer Column 3', 'dlc-designs' ),
 		)
 	);
 
@@ -115,37 +118,57 @@ function dlc_designs_content_width() {
 add_action( 'after_setup_theme', 'dlc_designs_content_width', 0 );
 
 /**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ * Registers an optional footer widget area for a newsletter signup (or
+ * anything else). It's not wired to any specific form plugin — add
+ * whatever widget you end up using (a Custom HTML widget with an embed
+ * code, a plugin's own widget, etc). The footer's 4th column only appears
+ * when this area actually has a widget in it.
  */
-function dlc_designs_widgets_init() {
+function dlc_designs_footer_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'dlc-designs' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'dlc-designs' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
+			'name'          => esc_html__( 'Footer Newsletter', 'dlc-designs' ),
+			'id'            => 'footer-newsletter',
+			'description'   => esc_html__( 'Optional. Add a widget here (e.g. a newsletter signup form) to show a 4th footer column. Leave empty to hide it.', 'dlc-designs' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
 	);
 }
-add_action( 'widgets_init', 'dlc_designs_widgets_init' );
+add_action( 'widgets_init', 'dlc_designs_footer_widgets_init' );
+
+/**
+ * Returns a cache-busting version string for a theme file, based on its
+ * last-modified time, so browsers/proxies never serve a stale copy after
+ * a style or script changes during development.
+ *
+ * @param string $relative_path Path relative to the theme root, e.g. '/style.css'.
+ * @return string
+ */
+function dlc_designs_asset_version( $relative_path ) {
+	$file_path = get_template_directory() . $relative_path;
+
+	return file_exists( $file_path ) ? (string) filemtime( $file_path ) : DLC_DESIGNS_VERSION;
+}
 
 /**
  * Enqueue scripts and styles.
  */
 function dlc_designs_scripts() {
 	wp_enqueue_style( 'dlc-designs-fonts', dlc_designs_fonts_url(), array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Google Fonts URL should not be versioned.
-	wp_enqueue_style( 'dlc-designs-style', get_stylesheet_uri(), array(), DLC_DESIGNS_VERSION );
+	wp_enqueue_style( 'dlc-designs-style', get_stylesheet_uri(), array(), dlc_designs_asset_version( '/style.css' ) );
 	wp_style_add_data( 'dlc-designs-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'dlc-designs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DLC_DESIGNS_VERSION, true );
+	wp_enqueue_script( 'dlc-designs-navigation', get_template_directory_uri() . '/js/navigation.js', array(), dlc_designs_asset_version( '/js/navigation.js' ), true );
 
 	if ( is_front_page() ) {
-		wp_enqueue_script( 'dlc-designs-typewriter', get_template_directory_uri() . '/js/typewriter.js', array(), DLC_DESIGNS_VERSION, true );
+		wp_enqueue_script( 'dlc-designs-typewriter', get_template_directory_uri() . '/js/typewriter.js', array(), dlc_designs_asset_version( '/js/typewriter.js' ), true );
+	}
+
+	if ( function_exists( 'is_cart' ) && is_cart() ) {
+		wp_enqueue_script( 'dlc-designs-cart', get_template_directory_uri() . '/js/cart.js', array(), dlc_designs_asset_version( '/js/cart.js' ), true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -210,6 +233,16 @@ require get_template_directory() . '/inc/custom-header.php';
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Social icon detection for the "Footer Social" nav menu.
+ */
+require get_template_directory() . '/inc/social-icons.php';
+
+/**
+ * Nav walker for the "Footer Social" menu.
+ */
+require get_template_directory() . '/inc/class-dlc-designs-social-menu-walker.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.

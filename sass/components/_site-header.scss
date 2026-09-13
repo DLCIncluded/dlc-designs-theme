@@ -52,6 +52,9 @@
 .main-navigation {
 	width: auto;
 	flex: 1 1 auto;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 
 	ul {
 		gap: 1.75em;
@@ -79,5 +82,65 @@
 	.current_page_ancestor > a,
 	.current-menu-ancestor > a {
 		color: $color__accent-green;
+	}
+}
+
+// A plain icon button instead of the base theme's green pill button (which
+// a bare <button> would otherwise inherit) — the toggle text stays in the
+// DOM for screen readers, just shifted off-screen rather than shown.
+.menu-toggle {
+	position: relative;
+	width: 2.75em;
+	height: 2.75em;
+	padding: 0;
+	overflow: hidden;
+	text-indent: -9999px;
+	white-space: nowrap;
+	background: transparent;
+	border: 1px solid $color__background-hr;
+	border-radius: 6px;
+
+	&:hover,
+	&:focus {
+		background: transparent;
+		border-color: $color__accent-green;
+		box-shadow: none;
+		transform: none;
+	}
+
+	&:active {
+		background: transparent;
+		transform: none;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0.7em;
+		right: 0.7em;
+		height: 2px;
+		background: $color__accent-green;
+		transform: translateY(-50%);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	// The middle bar is real; the top/bottom bars are faked with box-shadow
+	// so a single pseudo-element gives all three lines of the hamburger.
+	&::before {
+		box-shadow: 0 -7px 0 $color__accent-green, 0 7px 0 $color__accent-green;
+	}
+}
+
+.main-navigation.toggled .menu-toggle {
+
+	&::before {
+		box-shadow: none;
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	&::after {
+		transform: translateY(-50%) rotate(-45deg);
 	}
 }

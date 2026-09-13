@@ -1,3 +1,20 @@
 body {
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
+
+	// 100vw (used for full-bleed breakouts, e.g. the footer divider) is the
+	// viewport width INCLUDING the scrollbar, which is slightly wider than
+	// body's own width when a vertical scrollbar is present — without this,
+	// that difference shows up as a persistent horizontal scrollbar.
+	overflow-x: hidden;
+}
+
+.site-main {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 3em 5%;
+
+	&.site-main--full-bleed {
+		max-width: none;
+		padding: 0;
+	}
 }
