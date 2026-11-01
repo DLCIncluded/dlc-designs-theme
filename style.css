@@ -2,7 +2,7 @@
 Theme Name: DLC Designs
 Author: DLC Designs
 Description: A dark, terminal-inspired WooCommerce theme for the DLC Designs shop, with bright green and cyan accents, monospace type, and a typewriter homepage hero.
-Version: 1.0.1
+Version: 1.1.0
 Tested up to: 6.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -999,6 +999,31 @@ input[type="radio"] {
 	font-size: 0.8rem;
 	letter-spacing: 0.02em;
 	color: #8a968f;
+}
+
+.omc-giveaway-disclosure {
+	max-width: 900px;
+	margin: 1.5em auto 0;
+	padding-top: 1.25em;
+	border-top: 1px dashed #26302b;
+}
+
+.omc-giveaway-disclosure p {
+	margin: 0;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.72rem;
+	line-height: 1.6;
+	letter-spacing: 0.01em;
+	color: #8a968f;
+}
+
+.omc-giveaway-disclosure a {
+	color: #39ff6a;
+}
+
+.omc-giveaway-disclosure a:hover,
+.omc-giveaway-disclosure a:focus {
+	color: #2fe3ff;
 }
 
 .site-footer__columns {

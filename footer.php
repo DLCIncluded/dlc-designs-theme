@@ -93,6 +93,9 @@ $dlc_designs_has_footer_columns = has_nav_menu( 'footer-social' ) || has_nav_men
 				?>
 			</span>
 		</div><!-- .site-info -->
+
+		<?php if ( function_exists( 'omegamino_core_giveaway_disclosure' ) ) { omegamino_core_giveaway_disclosure(); } // Sweepstakes disclosure, only while a giveaway is live. ?>
+
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

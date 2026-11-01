@@ -9,7 +9,7 @@
 
 if ( ! defined( 'DLC_DESIGNS_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'DLC_DESIGNS_VERSION', '1.0.1' );
+	define( 'DLC_DESIGNS_VERSION', '1.1.0' );
 }
 
 /**

@@ -5,3 +5,4 @@ composer.lock
 style.css.map
 woocommerce.css.map
 .DS_Store
+/releases/*

@@ -14,6 +14,32 @@
 	}
 }
 
+// omegamino-core sweepstakes disclosure (only printed while a giveaway is live). Must stay legible.
+.omc-giveaway-disclosure {
+	max-width: 900px;
+	margin: 1.5em auto 0;
+	padding-top: 1.25em;
+	border-top: 1px dashed $color__background-hr;
+
+	p {
+		margin: 0;
+		font-family: $font__mono;
+		font-size: 0.72rem;
+		line-height: 1.6;
+		letter-spacing: 0.01em;
+		color: $color__text-muted;
+	}
+
+	a {
+		color: $color__accent-green;
+
+		&:hover,
+		&:focus {
+			color: $color__accent-cyan;
+		}
+	}
+}
+
 .site-footer__columns {
 	position: relative;
 	display: flex;
