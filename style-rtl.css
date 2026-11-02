@@ -2,7 +2,7 @@
 Theme Name: DLC Designs
 Author: DLC Designs
 Description: A dark, terminal-inspired WooCommerce theme for the DLC Designs shop, with bright green and cyan accents, monospace type, and a typewriter homepage hero.
-Version: 1.0.1
+Version: 1.2.0
 Tested up to: 6.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -1148,6 +1148,93 @@ input[type="radio"] {
 
 .footer-social-menu .social-icon {
 	display: block;
+}
+
+/* omegamino-core (popups, free-with)
+--------------------------------------------- */
+:root {
+	--om-text: #cfd8d3;
+	--om-text-muted: #8a968f;
+	--om-text-subtle: #8a968f;
+	--om-link: #39ff6a;
+	--om-accent: #39ff6a;
+	--om-on-accent: #06120a;
+	--om-success: #39ff6a;
+	--om-border: #26302b;
+	--om-surface-raised: #101512;
+	--om-surface-alt: #10201a;
+	--om-tint: rgba(57, 255, 106, 0.15);
+	--om-tint-strong: rgba(57, 255, 106, 0.3);
+}
+
+.omc-popups {
+	background: rgba(0, 0, 0, 0.75);
+}
+
+.omc-popup {
+	border-color: #1f9e46;
+	box-shadow: 0 0 40px rgba(57, 255, 106, 0.15), 0 20px 60px rgba(0, 0, 0, 0.6);
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+.omc-popup .omc-popup-title {
+	color: #39ff6a;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+.omc-popup .omc-popup-cta,
+.omc-popup .omc-popup-dismiss {
+	border-radius: 999px;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+.omc-popup .omc-popup-cta {
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.omc-popup .omc-popup-cta:hover,
+.omc-popup .omc-popup-cta:focus {
+	box-shadow: 0 0 20px rgba(57, 255, 106, 0.45);
+	transform: translateY(-1px);
+}
+
+.omc-popup .omc-popup-dismiss {
+	box-shadow: inset 0 0 0 1px #1f9e46;
+	color: #39ff6a;
+}
+
+.omc-popup .omc-popup-more {
+	color: #8a968f;
+}
+
+.omc-popup .omc-popup-more:hover,
+.omc-popup .omc-popup-more:focus {
+	color: #39ff6a;
+}
+
+.omc-popup-x:hover,
+.omc-popup-x:focus,
+.omc-popups-menu button:hover,
+.omc-popups-menu button:focus {
+	box-shadow: none;
+	transform: none;
+}
+
+.omc-popup-x:hover,
+.omc-popup-x:focus {
+	background: none;
+	color: #2fe3ff;
+}
+
+.omc-popups-menu button {
+	border-radius: 6px;
+	font-family: "JetBrains Mono", "Space Mono", monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+.omc-popups-menu button:hover,
+.omc-popups-menu button:focus {
+	background: #10201a;
+	color: #39ff6a;
 }
 
 /* Hero

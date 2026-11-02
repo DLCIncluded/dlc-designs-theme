@@ -6,7 +6,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
@@ -29,6 +29,9 @@ DLC Designs is a custom WooCommerce storefront theme: near-black backgrounds, br
 DLC Designs includes support for WooCommerce and for Infinite Scroll in Jetpack.
 
 == Changelog ==
+
+= 1.2.0 =
+* omegamino-core popups and free-with notices match the theme: --om-* colour tokens, mono type, pill buttons, green hover rise on the CTA.
 
 = 1.0.0 =
 * Initial release, forked from Underscores (_s).

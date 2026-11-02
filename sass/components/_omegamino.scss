@@ -1,0 +1,90 @@
+// omegamino-core reads these --om-* tokens for its popups and free-with notices.
+:root {
+	--om-text: #{$color__text-main};
+	--om-text-muted: #{$color__text-muted};
+	--om-text-subtle: #{$color__text-muted};
+	--om-link: #{$color__link};
+	--om-accent: #{$color__accent-green};
+	--om-on-accent: #06120a;
+	--om-success: #{$color__accent-green};
+	--om-border: #{$color__background-hr};
+	--om-surface-raised: #{$color__background-screen};
+	--om-surface-alt: #{$color__background-button};
+	--om-tint: #{$color__background-ins};
+	--om-tint-strong: rgba(57, 255, 106, 0.3);
+}
+
+.omc-popups {
+	background: rgba(0, 0, 0, 0.75);
+}
+
+.omc-popup {
+	border-color: $color__accent-green-dim;
+	box-shadow: 0 0 40px rgba(57, 255, 106, 0.15), 0 20px 60px rgba(0, 0, 0, 0.6);
+	font-family: $font__mono;
+
+	.omc-popup-title {
+		color: $color__accent-green;
+		font-family: $font__mono;
+	}
+
+	.omc-popup-cta,
+	.omc-popup-dismiss {
+		border-radius: 999px;
+		font-family: $font__mono;
+	}
+
+	// The CTA is an <a>, so it misses the theme's button:hover rise; copy it.
+	.omc-popup-cta {
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+		&:hover,
+		&:focus {
+			box-shadow: 0 0 20px $color__glow-green;
+			transform: translateY(-1px);
+		}
+	}
+
+	.omc-popup-dismiss {
+		box-shadow: inset 0 0 0 1px $color__accent-green-dim;
+		color: $color__accent-green;
+	}
+
+	.omc-popup-more {
+		color: $color__text-muted;
+
+		&:hover,
+		&:focus {
+			color: $color__accent-green;
+		}
+	}
+}
+
+// The theme's global button:hover would turn these into glowing green pills.
+.omc-popup-x,
+.omc-popups-menu button {
+	&:hover,
+	&:focus {
+		box-shadow: none;
+		transform: none;
+	}
+}
+
+.omc-popup-x {
+	&:hover,
+	&:focus {
+		background: none;
+		color: $color__accent-cyan;
+	}
+}
+
+.omc-popups-menu button {
+	border-radius: 6px;
+	font-family: $font__mono;
+
+	&:hover,
+	&:focus {
+		background: $color__background-button;
+		color: $color__accent-green;
+	}
+}

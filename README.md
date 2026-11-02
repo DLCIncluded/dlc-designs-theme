@@ -9,6 +9,14 @@ composer install
 npm install
 ```
 
+## omegamino-core
+
+The omegamino-core plugin's popups and free-with notices read `--om-*` CSS variables. This theme sets them, plus popup overrides, in `sass/components/_omegamino.scss`. The giveaway disclosure is styled in `_site-footer.scss` and the checkout boxes in `plugins/woocommerce/_checkout.scss`.
+
+## Release
+
+`python release.py X.Y.Z` bumps every version string and builds `releases/dlc-designs-theme-X.Y.Z.zip`. Run `npm run compile:css` and `npm run compile:rtl` first.
+
 ## Available CLI commands
 
 - `composer lint:wpcs` — checks all PHP files against PHP Coding Standards.
